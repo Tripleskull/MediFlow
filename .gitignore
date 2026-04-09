@@ -1,0 +1,35 @@
+# Project-specific exclusions (sensitive / non-anonymised content)
+/gitignore_working_documents/
+/gitignore_Inspiration_documents/
+
+# Claude / Cowork
+/.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Outputs (regenerable)
+# outputs/  # uncomment if you want to exclude generated reports
