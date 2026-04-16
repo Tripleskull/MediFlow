@@ -1,8 +1,10 @@
 # MediFlow
 
-**A plain-language analysis project for comparing two synthetic healthcare case systems**
+**An automated analysis pipeline for comparing two synthetic healthcare case systems**
 
-MediFlow is a portfolio project about checking data quality, cleaning messy operational extracts, and building a repeatable KPI report from that work. The data is synthetic. The workflow is based on real analytical problems: mixed date formats, duplicate case IDs, uneven month coverage, and fields that look comparable but need careful handling.
+MediFlow is a portfolio project built from the structure of a real analysis case. It uses synthetic data sources modeled on the original systems and turns the workflow into a repeatable pipeline: ingesting and cleaning messy operational extracts, comparing KPI quality across systems, and generating a report and slide deck from the same run.
+
+The data in this repository is synthetic, but the analytical problems are realistic: mixed date formats, duplicate case IDs, uneven month coverage, and fields that look comparable but need careful handling.
 
 ## Start Here
 
@@ -28,7 +30,7 @@ The pipeline answers four practical questions:
 - Which values should stay exploratory?
 - How do we turn the same checks into a repeatable report and slide deck?
 
-## Public Repo Layout
+## Repo Layout
 
 ```text
 src/      Source-of-truth analysis and reporting code
@@ -40,12 +42,6 @@ output/   Generated figures, report context, and Overleaf export
 ```
 
 The repo is meant to read from top to bottom in that order: story, method, code, generated outputs.
-
-## Public Vs Local-Only Material
-
-The public project is the folders above.
-
-Local-only inspiration files, working notes, and older case material live under `private/` in my local workspace. That folder is ignored by Git and is not part of the public repo story. The goal is to keep the GitHub version easy to scan while still keeping local working material available during development.
 
 ## Running The Analysis
 
