@@ -1,0 +1,27 @@
+% AUTO-GENERATED: Excel date parsing note
+% Refresh with python -m src.cli analyse --no-compile.
+\noindent A practical part of the original exploration was helping a department turn exported date strings into usable Excel dates before any KPI work could start.
+
+\medskip
+\begin{tabularx}{\textwidth}{@{}p{4.0cm}X@{}}
+\toprule
+\textbf{Pattern} & \textbf{Excel formula used in the exploration} \\
+\midrule
+Clean export (\texttt{YYYYMMDD}) & \begin{minipage}[t]{\linewidth}
+\raggedright\ttfamily\footnotesize
+=IF(A2=0,"",DATE(LEFT(TEXT(A2,"00000000"),4),\\
+MID(TEXT(A2,"00000000"),5,2),\\
+RIGHT(TEXT(A2,"00000000"),2)))
+\end{minipage} \\[0.8em]
+Mixed export (slash / dash timestamps) & \begin{minipage}[t]{\linewidth}
+\raggedright\ttfamily\footnotesize
+=IF(A2="","",IF(ISNUMBER(SEARCH("/",A2)),\\
+DATE(MID(A2,FIND("/",A2,FIND("/",A2)+1)+1,4),\\
+LEFT(A2,FIND("/",A2)-1),\\
+MID(A2,FIND("/",A2)+1,FIND("/",A2,FIND("/",A2)+1)-FIND("/",A2)-1)),\\
+DATE(RIGHT(LEFT(A2,10),4),MID(A2,4,2),LEFT(A2,2))))
+\end{minipage} \\
+\bottomrule
+\end{tabularx}
+
+\noindent\small\textit{These formulas are kept as documentation of the exploration. The Python pipeline now mirrors the same logic, so Excel is not the source of truth for the final report.}

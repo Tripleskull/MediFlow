@@ -1,6 +1,5 @@
-# Project-specific exclusions (sensitive / non-anonymised content)
-/gitignore_working_documents/
-/gitignore_Inspiration_documents/
+# Local-only working material
+/private/
 
 # Claude / Cowork
 /.claude/
@@ -30,6 +29,16 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+.pytest_cache/
+pytest-cache-files*/
 
 # Outputs (regenerable)
-# outputs/  # uncomment if you want to exclude generated reports
+# output/  # uncomment if you want to exclude generated reports
+output/*.aux
+output/*.log
+output/*.out
+output/*.toc
+output/*.nav
+output/*.snm
+output/*.fls
+output/*.fdb_latexmk

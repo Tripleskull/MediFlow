@@ -1,0 +1,69 @@
+postcode,label_dk,actual_region,careflow_pool,meditrack_pool,overlap_role
+2000,Frederiksberg,Hovedstaden,none,none,core
+2100,København Ø,Hovedstaden,core,none,core
+2200,København N,Hovedstaden,core,none,core
+2300,København S,Hovedstaden,core,none,core
+2400,København NV,Hovedstaden,core,none,core
+2450,København SV,Hovedstaden,core,none,core
+2500,Valby,Hovedstaden,core,none,core
+2600,Glostrup,Hovedstaden,core,overlap,shared
+2605,Brøndby,Hovedstaden,core,none,core
+2610,Rødovre,Hovedstaden,core,none,core
+2630,Taastrup,Hovedstaden,core,overlap,shared
+2650,Hvidovre,Hovedstaden,core,overlap,shared
+2660,Brøndby Strand,Hovedstaden,core,none,core
+2670,Greve,Sjaelland,overlap,overlap,shared
+2680,Solrød Strand,Sjaelland,overlap,overlap,shared
+2690,Karlslunde,Sjaelland,overlap,overlap,shared
+2730,Herlev,Hovedstaden,core,none,core
+2740,Skovlunde,Hovedstaden,core,none,core
+2800,Kongens Lyngby,Hovedstaden,core,overlap,shared
+2850,Nærum,Hovedstaden,core,none,core
+2860,Søborg,Hovedstaden,core,none,core
+2900,Hellerup,Hovedstaden,core,none,core
+2920,Charlottenlund,Hovedstaden,core,none,core
+2950,Vedbæk,Hovedstaden,core,none,core
+2970,Hørsholm,Hovedstaden,core,none,core
+3000,Helsingør,Hovedstaden,core,none,core
+3050,Humlebæk,Hovedstaden,core,none,core
+3060,Espergærde,Hovedstaden,core,none,core
+3100,Hornbæk,Hovedstaden,core,none,core
+3120,Dronningmølle,Hovedstaden,core,none,core
+3140,Ålsgårde,Hovedstaden,core,none,core
+3200,Helsinge,Hovedstaden,core,none,core
+3400,Hillerød,Hovedstaden,core,overlap,shared
+3450,Allerød,Hovedstaden,core,none,core
+3460,Birkerød,Hovedstaden,core,none,core
+3500,Værløse,Hovedstaden,core,none,core
+4000,Roskilde,Sjaelland,overlap,core,shared
+4100,Ringsted,Sjaelland,none,core,core
+4130,Viby Sjælland,Sjaelland,overlap,core,shared
+4140,Borup,Sjaelland,overlap,core,shared
+4180,Sorø,Sjaelland,none,core,core
+4200,Slagelse,Sjaelland,none,core,core
+4270,Høng,Sjaelland,none,core,core
+4300,Holbæk,Sjaelland,none,core,core
+4330,Hvalsø,Sjaelland,none,core,core
+4340,Tølløse,Sjaelland,none,core,core
+4400,Kalundborg,Sjaelland,none,core,core
+4500,Nykøbing Sjælland,Sjaelland,none,core,core
+4550,Asnæs,Sjaelland,none,core,core
+4560,Vig,Sjaelland,none,core,core
+4571,Grevinge,Sjaelland,none,core,core
+4600,Køge,Sjaelland,overlap,core,shared
+4660,Store Heddinge,Sjaelland,none,core,core
+4681,Herfølge,Sjaelland,none,core,core
+4700,Næstved,Sjaelland,none,core,core
+4720,Præstø,Sjaelland,none,core,core
+4760,Vordingborg,Sjaelland,none,core,core
+4800,Nykøbing Falster,Sjaelland,none,core,core
+4840,Nørre Alslev,Sjaelland,none,core,core
+4900,Nakskov,Sjaelland,none,core,core
+4930,Maribo,Sjaelland,none,core,core
+4990,Sakskøbing,Sjaelland,none,core,core
+5000,Odense C,Other,outlier,none,outlier
+6270,Tønder,Other,none,outlier,outlier
+6700,Esbjerg,Other,outlier,none,outlier
+7500,Holstebro,Other,none,outlier,outlier
+8000,Århus C,Other,none,outlier,outlier
+9000,Aalborg,Other,outlier,none,outlier

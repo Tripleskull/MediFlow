@@ -1,0 +1,378 @@
+{
+  "build_timestamp": "2026-04-15T15:33+02:00",
+  "build_date": "2026-04-15",
+  "analysis_run_label": "15 Apr 2026, 15:33",
+  "careflow_raw_rows": 26179,
+  "meditrack_raw_rows": 17262,
+  "source_truth_files": [
+    "data/careflow_north.csv",
+    "data/meditrack_east.csv",
+    "src/analyse.py",
+    "src/reporting.py",
+    "docs/methodology.md",
+    "report/mediflow_report.tex",
+    "report/mediflow_slides.tex"
+  ],
+  "foundation_points": [
+    "We tested candidate file encodings to find an import setup that preserved the raw values.",
+    "We read date columns as text first to find the real source formats before parsing them.",
+    "We measured the slash and dash populations to find how mixed the messy date fields were.",
+    "We separated exact duplicate rows from duplicate case IDs to find the true case grain.",
+    "We marked risky metrics as exploratory to find which comparisons were safe to treat as headline results.",
+    "We generated report facts from the script to keep the written outputs aligned with the current run."
+  ],
+  "current_run_highlights": [
+    "CareFlow finished case rate (Completed): 78.1%",
+    "CareFlow open rate at year end: 14.1%",
+    "CareFlow median treatment time: 48 days",
+    "MediTrack finished case rate (Done): 35.7%",
+    "MediTrack finish-before-registration rate: 46.0%",
+    "MediTrack RegisteredAt date styles: 50.1% slash / 49.9% dash",
+    "MediTrack duplicate cleanup in the pipeline: 81 exact rows removed and 16 extra case rows collapsed"
+  ],
+  "careflow_metrics": {
+    "system": "CareFlow North",
+    "registered_cases": 26179,
+    "completed_cases": 20456,
+    "completed_pct": 78.13896634707208,
+    "cancelled_cases": 2023,
+    "cancelled_pct": 7.727567897933458,
+    "open_cases": 3700,
+    "open_pct": 14.133465754994461,
+    "inversion_pct": 0.15643332029722332,
+    "median_duration_days": 48.0,
+    "mean_duration_days": 60.082990599294945,
+    "logical_order_pct": 99.80518736391764,
+    "parse_rate_pct": 100.0,
+    "months_present": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "temporal_coverage_text": "11/12 months",
+    "treatment_time_text": "OK: median 48 d",
+    "duplicates_text": "OK: no duplicate case rows"
+  },
+  "meditrack_metrics": {
+    "system": "MediTrack East",
+    "registered_cases": 17165,
+    "completed_cases": 6123,
+    "completed_pct": 35.67142441013691,
+    "cancelled_cases": 1299,
+    "cancelled_pct": 7.5677250218467815,
+    "open_cases": 9743,
+    "open_pct": 56.76085056801631,
+    "inversion_pct": 45.99052751918994,
+    "median_duration_days": 57.0,
+    "mean_duration_days": 71.45086180828545,
+    "logical_order_pct": 82.34780075735509,
+    "parse_rate_pct": 100.0,
+    "months_present": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "temporal_coverage_text": "12/12 months",
+    "treatment_time_text": "Exploratory: median 57 d",
+    "duplicates_text": "Resolved: 81 exact rows + 16 extra case rows removed"
+  },
+  "scorecard_rows": [
+    {
+      "dimension": "Date format",
+      "careflow_text": "OK: single YYYYMMDD format",
+      "careflow_level": "ok",
+      "meditrack_text": "Caution: mixed slash/dash timestamps (50.1% slash, 49.9% dash)",
+      "meditrack_level": "caution"
+    },
+    {
+      "dimension": "Parse rate",
+      "careflow_text": "OK: 100.0%",
+      "careflow_level": "ok",
+      "meditrack_text": "OK: 100.0%",
+      "meditrack_level": "ok"
+    },
+    {
+      "dimension": "Reg <= assign",
+      "careflow_text": "OK: 99.8%",
+      "careflow_level": "ok",
+      "meditrack_text": "Caution: 82.3%",
+      "meditrack_level": "caution"
+    },
+    {
+      "dimension": "Finish before reg",
+      "careflow_text": "OK: 0.156%",
+      "careflow_level": "ok",
+      "meditrack_text": "Fail: 46.0%",
+      "meditrack_level": "fail"
+    },
+    {
+      "dimension": "Treatment-time KPI",
+      "careflow_text": "OK: median 48 d",
+      "careflow_level": "ok",
+      "meditrack_text": "Exploratory: median 57 d",
+      "meditrack_level": "fail"
+    },
+    {
+      "dimension": "Temporal coverage",
+      "careflow_text": "Caution: 11/12 months",
+      "careflow_level": "caution",
+      "meditrack_text": "OK: 12/12 months",
+      "meditrack_level": "ok"
+    },
+    {
+      "dimension": "Duplicates",
+      "careflow_text": "OK: no duplicate case rows",
+      "careflow_level": "ok",
+      "meditrack_text": "Fail: 81 exact rows and 16 extra case rows required collapse",
+      "meditrack_level": "fail"
+    }
+  ],
+  "careflow_category_rows": [
+    {
+      "TRACK": "HOME_MON",
+      "cases": 6000,
+      "completed": 4700,
+      "cancelled": 452,
+      "share_pct": 22.919133656747775,
+      "completed_pct": 78.33333333333333,
+      "cancel_pct": 7.533333333333333
+    },
+    {
+      "TRACK": "SURG_PRE",
+      "cases": 5200,
+      "completed": 4145,
+      "cancelled": 320,
+      "share_pct": 19.863249169181405,
+      "completed_pct": 79.71153846153847,
+      "cancel_pct": 6.153846153846154
+    },
+    {
+      "TRACK": "ACUTE",
+      "cases": 3900,
+      "completed": 2944,
+      "cancelled": 405,
+      "share_pct": 14.897436876886053,
+      "completed_pct": 75.48717948717949,
+      "cancel_pct": 10.384615384615385
+    },
+    {
+      "TRACK": "REHAB",
+      "cases": 3600,
+      "completed": 2763,
+      "cancelled": 328,
+      "share_pct": 13.751480194048666,
+      "completed_pct": 76.75,
+      "cancel_pct": 9.11111111111111
+    },
+    {
+      "TRACK": "OUTP_FUP",
+      "cases": 2800,
+      "completed": 2274,
+      "cancelled": 130,
+      "share_pct": 10.695595706482294,
+      "completed_pct": 81.21428571428572,
+      "cancel_pct": 4.642857142857143
+    },
+    {
+      "TRACK": "SURG_POST",
+      "cases": 2479,
+      "completed": 1816,
+      "cancelled": 313,
+      "share_pct": 9.46942205584629,
+      "completed_pct": 73.25534489713594,
+      "cancel_pct": 12.62605889471561
+    },
+    {
+      "TRACK": "DIAG",
+      "cases": 2200,
+      "completed": 1814,
+      "cancelled": 75,
+      "share_pct": 8.403682340807519,
+      "completed_pct": 82.45454545454545,
+      "cancel_pct": 3.4090909090909087
+    }
+  ],
+  "meditrack_category_rows": [
+    {
+      "CareGroup": "Kort Sag",
+      "cases": 4800,
+      "completed": 1789,
+      "cancelled": 286,
+      "share_pct": 27.963879988348385,
+      "completed_pct": 37.27083333333333,
+      "cancel_pct": 5.958333333333334
+    },
+    {
+      "CareGroup": "Pakke A",
+      "cases": 3800,
+      "completed": 1322,
+      "cancelled": 321,
+      "share_pct": 22.13807165744247,
+      "completed_pct": 34.78947368421053,
+      "cancel_pct": 8.447368421052632
+    },
+    {
+      "CareGroup": "Pakke B",
+      "cases": 3000,
+      "completed": 985,
+      "cancelled": 313,
+      "share_pct": 17.477424992717737,
+      "completed_pct": 32.83333333333333,
+      "cancel_pct": 10.433333333333334
+    },
+    {
+      "CareGroup": "Forl?b Y",
+      "cases": 2200,
+      "completed": 853,
+      "cancelled": 99,
+      "share_pct": 12.816778327993008,
+      "completed_pct": 38.77272727272727,
+      "cancel_pct": 4.5
+    },
+    {
+      "CareGroup": "Revurdering",
+      "cases": 1865,
+      "completed": 571,
+      "cancelled": 235,
+      "share_pct": 10.865132537139528,
+      "completed_pct": 30.61662198391421,
+      "cancel_pct": 12.600536193029491
+    },
+    {
+      "CareGroup": "Forl?b X",
+      "cases": 1500,
+      "completed": 603,
+      "cancelled": 45,
+      "share_pct": 8.738712496358868,
+      "completed_pct": 40.2,
+      "cancel_pct": 3.0
+    }
+  ],
+  "careflow_region_rows": [
+    {
+      "region": "Hovedstaden",
+      "share_pct": 93.92260972535237
+    },
+    {
+      "region": "Sjaelland",
+      "share_pct": 4.969632147904809
+    },
+    {
+      "region": "Other",
+      "share_pct": 1.1077581267428092
+    }
+  ],
+  "meditrack_region_rows": [
+    {
+      "region": "Hovedstaden",
+      "share_pct": 3.5221874637933035
+    },
+    {
+      "region": "Sjaelland",
+      "share_pct": 94.624029660526
+    },
+    {
+      "region": "Other",
+      "share_pct": 1.853782875680686
+    }
+  ],
+  "registered_at_format": {
+    "slash_pct": 50.063723786351524,
+    "dash_pct": 49.936276213648476
+  },
+  "meditrack_duplicate_profile": {
+    "raw_rows": 17262,
+    "exact_duplicate_rows": 81,
+    "rows_after_exact_dedup": 17181,
+    "duplicate_case_groups": 16,
+    "duplicate_case_rows": 32,
+    "case_rows_removed": 16,
+    "conflicting_status_groups": 0
+  },
+  "figure_specs": [
+    {
+      "filename": "monthly_volume_2022.png",
+      "title": "Monthly registration volume",
+      "caption": "Cases registered each month in the 2022 study window."
+    },
+    {
+      "filename": "monthly_status_careflow.png",
+      "title": "CareFlow status by registration month",
+      "caption": "Completed, open, and cancelled CareFlow cases by registration month."
+    },
+    {
+      "filename": "monthly_status_meditrack.png",
+      "title": "MediTrack status by registration month",
+      "caption": "MediTrack workflow states are grouped into a comparison-ready Done / Open / Cancelled view."
+    },
+    {
+      "filename": "treatment_duration_boxplot.png",
+      "title": "Treatment-time distribution",
+      "caption": "Case duration after cleaning and status setup."
+    },
+    {
+      "filename": "kpi_comparison.png",
+      "title": "KPI comparison",
+      "caption": "Side-by-side KPI view. MediTrack treatment time stays marked as exploratory."
+    },
+    {
+      "filename": "missing_date_fields.png",
+      "title": "Date-field completeness",
+      "caption": "How complete the key date fields are in each dataset."
+    },
+    {
+      "filename": "date_span_outliers.png",
+      "title": "Date-span outliers",
+      "caption": "Date ranges by field, including earlier admin history and out-of-window dates."
+    },
+    {
+      "filename": "geo_top15_postalcodes.png",
+      "title": "Synthetic geography on Danish postcode map",
+      "caption": "Real Danish postcode shapes with synthetic postcode choices made for visual separation only."
+    },
+    {
+      "filename": "automation_matrix_careflow.png",
+      "title": "CareFlow category pattern",
+      "caption": "CareFlow category share, treatment-time spread, and cancellation rate for plotted finished cases."
+    },
+    {
+      "filename": "automation_matrix_meditrack.png",
+      "title": "MediTrack category pattern",
+      "caption": "MediTrack category share, treatment-time spread, and cancellation rate for plotted finished cases."
+    },
+    {
+      "filename": "automation_matrix_combined.png",
+      "title": "Combined category pattern",
+      "caption": "CareFlow and MediTrack categories in one view. Y-axis shows share within each dataset's plotted finished-case pool, and bubble size shows cancellation rate."
+    },
+    {
+      "filename": "data_quality_scorecard.png",
+      "title": "Data-quality scorecard",
+      "caption": "These scorecard values come straight from the current run."
+    }
+  ],
+  "foundation_markdown": "# How this analysis was built\n\nThis project started with exploratory work on messy operational extracts. The script now turns the repeatable parts of that work into one workflow, so the report and slides can be refreshed from the same source.\n\n## Checks we did before locking the pipeline\n\n- candidate file encodings and import assumptions\n- raw date strings before coercion into datetimes\n- mixed-format date populations in the messy source system\n- duplicate rows versus duplicate case identifiers\n- competing treatment-time definitions and whether they were robust enough for KPI use\n\n## What the current pipeline does every run\n\n- the messy source is loaded as text first, then parsed with explicit mixed-format rules\n- duplicate case identifiers are collapsed at the `RefNo` case grain after exact deduplication\n- robust and exploratory metrics are kept separate in the figures and scorecards\n- postcode geography uses real Danish postcode polygons, while postcode choices stay synthetic and are only there for readable visuals\n- summary prose is generated from computed metrics instead of being typed into the report by hand\n\n## Excel date parsing note\n\nOne practical request in the original work was helping a department turn exported date values into usable Excel dates. The same issue is reflected here: one source looks like `YYYYMMDD`, while the other mixes slash and dash timestamp styles.\n\nFor the clean export pattern, the Excel formula was:\n\n```excel\n=IF(A2=0,\"\",DATE(LEFT(TEXT(A2,\"00000000\"),4),MID(TEXT(A2,\"00000000\"),5,2),RIGHT(TEXT(A2,\"00000000\"),2)))\n```\n\nFor the mixed-format export pattern, the Excel formula was:\n\n```excel\n=IF(A2=\"\",\"\",IF(ISNUMBER(SEARCH(\"/\",A2)),DATE(MID(A2,FIND(\"/\",A2,FIND(\"/\",A2)+1)+1,4),LEFT(A2,FIND(\"/\",A2)-1),MID(A2,FIND(\"/\",A2)+1,FIND(\"/\",A2,FIND(\"/\",A2)+1)-FIND(\"/\",A2)-1)),DATE(RIGHT(LEFT(A2,10),4),MID(A2,4,2),LEFT(A2,2))))\n```\n\nThe Python pipeline now mirrors that logic. Excel is included here as a worked example from the exploration, not as the source of truth for the final report.\n\n## Current run highlights\n\n- CareFlow finished case rate (Completed): 78.1%\n- CareFlow open rate at year end: 14.1%\n- CareFlow median treatment time: 48 days\n- MediTrack finished case rate (Done): 35.7%\n- MediTrack finish-before-registration rate: 46.0%\n- MediTrack RegisteredAt date styles: 50.1% slash, 49.9% dash\n- MediTrack duplicate cleanup in the pipeline: 81 exact rows removed and 16 extra case rows collapsed\n\n## Plain-language read\n\nCareFlow is the cleaner system for direct KPI comparison. It still has open cases at year end, and its admin dates can start before 2022, so the data is not unrealistically neat. MediTrack is useful for status and volume comparison, but its treatment-time measure is still only a rough check because finish dates often come before registration dates. The postcode map uses real postcode shapes, but the postcode choices are synthetic and were picked for visual separation rather than to reflect actual Region Hovedstaden or Region Sjaelland activity.\n",
+  "generated_dir": "output/generated",
+  "master_report_path": "report/mediflow_report.tex",
+  "master_slides_path": "report/mediflow_slides.tex",
+  "auto_exec_summary": "CareFlow supports a more direct KPI read in this run: 78.1% finished, 14.1% still open, and almost no finish-before-registration cases (0.156%). MediTrack is still useful for case counts and status mix, but 46.0% of finished cases fall before registration, so the 57 days treatment-time figure should stay a rough check.",
+  "auto_quality_summary": "The two datasets needed different cleanup steps before comparison. CareFlow uses one date style and does not need case-level deduplication. MediTrack needed two extra checks: parsing mixed RegisteredAt date styles (50.1% slash / 49.9% dash) and collapsing 81 exact duplicate rows plus 16 extra RefNo rows to case level. That makes the status and volume comparisons stronger than the treatment-time comparison.",
+  "auto_geo_summary": "CareFlow mostly uses Hovedstaden postcodes (93.9%) with a smaller Sjaelland share (5.0%). MediTrack mostly uses Sjaelland postcodes (94.6%) with some Hovedstaden spillover (3.5%). The postcode pools are synthetic and were chosen for readable visual separation, not to describe real regional activity."
+}

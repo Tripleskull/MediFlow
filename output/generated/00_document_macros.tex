@@ -1,0 +1,155 @@
+% AUTO-GENERATED: document macros
+% Refresh with python -m src.cli analyse --no-compile.
+\newcommand{\MediFlowBuildDate}{2026-04-15}
+
+\newcommand{\MediFlowBuildTimestamp}{2026-04-15T15:33+02:00}
+
+\newcommand{\MediFlowAnalysisRunLabel}{15 Apr 2026, 15:33}
+
+\newcommand{\MediFlowAutoTag}{[AUTO-GENERATED INTERPRETATION]}
+
+\newcommand{\MediFlowContextPath}{\detokenize{../output/report_context.json}}
+
+\newcommand{\MediFlowGeneratedDir}{\detokenize{../output/generated}}
+
+\newcommand{\MediFlowCareFlowRawRows}{26,179}
+
+\newcommand{\MediFlowMediTrackRawRows}{17,262}
+
+\newcommand{\MediFlowCareFlowRegisteredCases}{26,179}
+
+\newcommand{\MediFlowMediTrackRegisteredCases}{17,165}
+
+\newcommand{\MediFlowCareFlowFinishedCases}{20,456}
+
+\newcommand{\MediFlowMediTrackFinishedCases}{6,123}
+
+\newcommand{\MediFlowCareFlowFinishedPct}{78.1\%}
+
+\newcommand{\MediFlowMediTrackFinishedPct}{35.7\%}
+
+\newcommand{\MediFlowCareFlowOpenPct}{14.1\%}
+
+\newcommand{\MediFlowMediTrackOpenPct}{56.8\%}
+
+\newcommand{\MediFlowCareFlowCancelledPct}{7.7\%}
+
+\newcommand{\MediFlowMediTrackCancelledPct}{7.6\%}
+
+\newcommand{\MediFlowCareFlowMedianDays}{48 days}
+
+\newcommand{\MediFlowMediTrackMedianDays}{57 days}
+
+\newcommand{\MediFlowCareFlowMonthCoverage}{11/12 months}
+
+\newcommand{\MediFlowMediTrackMonthCoverage}{12/12 months}
+
+\newcommand{\MediFlowCareFlowLogicalOrderPct}{99.8\%}
+
+\newcommand{\MediFlowMediTrackLogicalOrderPct}{82.3\%}
+
+\newcommand{\MediFlowCareFlowInversionPct}{0.156\%}
+
+\newcommand{\MediFlowMediTrackInversionPct}{46.0\%}
+
+\newcommand{\MediFlowMediTrackSlashPct}{50.1\%}
+
+\newcommand{\MediFlowMediTrackDashPct}{49.9\%}
+
+\newcommand{\MediFlowMediTrackExactDuplicateRows}{81}
+
+\newcommand{\MediFlowMediTrackCaseRowsRemoved}{16}
+
+\newcommand{\MediFlowCareFlowHovedstadenPct}{93.9\%}
+
+\newcommand{\MediFlowCareFlowSjaellandPct}{5.0\%}
+
+\newcommand{\MediFlowMediTrackHovedstadenPct}{3.5\%}
+
+\newcommand{\MediFlowMediTrackSjaellandPct}{94.6\%}
+
+\newcommand{\MediFlowFoundationPoints}{%
+\begin{itemize}
+  \item We tested candidate file encodings to find an import setup that preserved the raw values.
+  \item We read date columns as text first to find the real source formats before parsing them.
+  \item We measured the slash and dash populations to find how mixed the messy date fields were.
+  \item We separated exact duplicate rows from duplicate case IDs to find the true case grain.
+  \item We marked risky metrics as exploratory to find which comparisons were safe to treat as headline results.
+  \item We generated report facts from the script to keep the written outputs aligned with the current run.
+\end{itemize}
+}
+
+\newcommand{\MediFlowCurrentRunHighlights}{%
+\begin{itemize}
+  \item CareFlow finished case rate (Completed): 78.1\%
+  \item CareFlow open rate at year end: 14.1\%
+  \item CareFlow median treatment time: 48 days
+  \item MediTrack finished case rate (Done): 35.7\%
+  \item MediTrack finish-before-registration rate: 46.0\%
+  \item MediTrack RegisteredAt date styles: 50.1\% slash / 49.9\% dash
+  \item MediTrack duplicate cleanup in the pipeline: 81 exact rows removed and 16 extra case rows collapsed
+\end{itemize}
+}
+
+\newcommand{\MediFlowKpiRows}{%
+Registered cases (2022) & 26,179 & 17,165 & Case-level comparison \\
+Finished cases & 20,456 & 6,123 & Completed vs Done \\
+Finished case rate & 78.1\% & 35.7\% & Same concept \\
+Open rate & 14.1\% & 56.8\% & MediTrack groups Open, Pending, and In Progress \\
+Cancelled rate & 7.7\% & 7.6\% & Comparable \\
+Median treatment time & 48 days & 57 days & MediTrack exploratory \\
+Finish before registration & 0.156\% & 46.0\% & Date-order check \\
+}
+
+\newcommand{\MediFlowScorecardRows}{%
+Date format & OK: single YYYYMMDD format & Caution: mixed slash/dash timestamps (50.1\% slash, 49.9\% dash) \\
+Parse rate & OK: 100.0\% & OK: 100.0\% \\
+Reg <= assign & OK: 99.8\% & Caution: 82.3\% \\
+Finish before reg & OK: 0.156\% & Fail: 46.0\% \\
+Treatment-time KPI & OK: median 48 d & Exploratory: median 57 d \\
+Temporal coverage & Caution: 11/12 months & OK: 12/12 months \\
+Duplicates & OK: no duplicate case rows & Fail: 81 exact rows and 16 extra case rows required collapse \\
+}
+
+\newcommand{\MediFlowCareFlowCategoryRows}{%
+HOME\_MON & 22.9\% & 78.3\% & 7.5\% \\
+SURG\_PRE & 19.9\% & 79.7\% & 6.2\% \\
+ACUTE & 14.9\% & 75.5\% & 10.4\% \\
+REHAB & 13.8\% & 76.8\% & 9.1\% \\
+OUTP\_FUP & 10.7\% & 81.2\% & 4.6\% \\
+SURG\_POST & 9.5\% & 73.3\% & 12.6\% \\
+DIAG & 8.4\% & 82.5\% & 3.4\% \\
+}
+
+\newcommand{\MediFlowMediTrackCategoryRows}{%
+Kort Sag & 28.0\% & 37.3\% & 6.0\% \\
+Pakke A & 22.1\% & 34.8\% & 8.4\% \\
+Pakke B & 17.5\% & 32.8\% & 10.4\% \\
+Forlob Y & 12.8\% & 38.8\% & 4.5\% \\
+Revurdering & 10.9\% & 30.6\% & 12.6\% \\
+Forlob X & 8.7\% & 40.2\% & 3.0\% \\
+}
+
+\newcommand{\MediFlowCareFlowRegionRows}{%
+Hovedstaden & 93.9\% \\
+Sjaelland & 5.0\% \\
+Other & 1.1\% \\
+}
+
+\newcommand{\MediFlowMediTrackRegionRows}{%
+Hovedstaden & 3.5\% \\
+Sjaelland & 94.6\% \\
+Other & 1.9\% \\
+}
+
+\newcommand{\MediFlowAutoExecSummary}{%
+CareFlow supports a more direct KPI read in this run: 78.1\% finished, 14.1\% still open, and almost no finish-before-registration cases (0.156\%). MediTrack is still useful for case counts and status mix, but 46.0\% of finished cases fall before registration, so the 57 days treatment-time figure should stay a rough check.
+}
+
+\newcommand{\MediFlowAutoQualitySummary}{%
+The two datasets needed different cleanup steps before comparison. CareFlow uses one date style and does not need case-level deduplication. MediTrack needed two extra checks: parsing mixed RegisteredAt date styles (50.1\% slash / 49.9\% dash) and collapsing 81 exact duplicate rows plus 16 extra RefNo rows to case level. That makes the status and volume comparisons stronger than the treatment-time comparison.
+}
+
+\newcommand{\MediFlowAutoGeoSummary}{%
+CareFlow mostly uses Hovedstaden postcodes (93.9\%) with a smaller Sjaelland share (5.0\%). MediTrack mostly uses Sjaelland postcodes (94.6\%) with some Hovedstaden spillover (3.5\%). The postcode pools are synthetic and were chosen for readable visual separation, not to describe real regional activity.
+}

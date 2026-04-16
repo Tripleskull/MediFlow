@@ -1,0 +1,418 @@
+% Editable slide deck entrypoint.
+% Refresh generated facts first with: python -m src.cli analyse --no-compile
+
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[aspectratio=169,12pt]{beamer}
+
+\usetheme{metropolis}
+\metroset{progressbar=frametitle, sectionpage=none, numbering=fraction}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage{appendixnumberbeamer}
+\usetikzlibrary{arrows.meta,positioning}
+
+\definecolor{navy}{RGB}{30,58,95}
+\definecolor{careblue}{RGB}{37,99,235}
+\definecolor{medigreen}{RGB}{22,163,74}
+\definecolor{headerblue}{RGB}{213,232,240}
+\definecolor{midgray}{RGB}{107,114,128}
+\definecolor{lightgray}{RGB}{245,245,245}
+
+\setbeamercolor{frametitle}{bg=navy, fg=white}
+\setbeamercolor{progress bar}{fg=careblue}
+\setbeamercolor{alerted text}{fg=careblue}
+\setbeamercolor{title separator}{fg=careblue}
+\setbeamercolor{normal text}{fg=navy!85!black}
+\setbeamercolor{background canvas}{bg=white}
+
+\graphicspath{{../output/figures/}}
+\input{../output/generated/00_document_macros.tex}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\def\tabularxcolumn#1{m{#1}}
+
+\newcommand{\reciconcalendar}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.08cm, line width=1.2pt, color=careblue] (0,0) rectangle (1.5,1.55);
+\fill[careblue!14] (0,1.12) rectangle (1.5,1.55);
+\draw[line width=1pt, color=careblue] (0.32,1.55) -- (0.32,1.8);
+\draw[line width=1pt, color=careblue] (1.18,1.55) -- (1.18,1.8);
+\draw[line width=0.9pt, color=careblue!70!black] (0.28,0.82) -- (0.66,0.42) -- (1.22,0.98);
+\end{tikzpicture}}
+
+\newcommand{\reciconwindow}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.08cm, line width=1.2pt, color=careblue] (0,0) rectangle (1.7,1.35);
+\fill[careblue!12] (0,1.05) rectangle (1.7,1.35);
+\draw[line width=0.9pt, color=careblue!70!black] (0.22,0.77) -- (1.48,0.77);
+\draw[line width=0.9pt, color=careblue!70!black] (0.22,0.48) -- (1.1,0.48);
+\fill[medigreen!65] (0.24,0.21) rectangle (1.46,0.38);
+\end{tikzpicture}}
+
+\newcommand{\reciconcasegrain}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.05cm, line width=1.1pt, color=careblue] (0.16,0.12) rectangle (1.3,1.1);
+\draw[rounded corners=0.05cm, line width=1.1pt, color=careblue!70] (0,0.28) rectangle (1.14,1.26);
+\draw[line width=0.9pt, color=careblue!75!black] (1.12,0.22) circle (0.28);
+\draw[line width=0.9pt, color=careblue!75!black] (1.3,0.04) -- (1.54,-0.2);
+\fill[careblue!15] (0.24,0.8) rectangle (0.98,0.96);
+\fill[careblue!15] (0.24,0.5) rectangle (0.86,0.66);
+\end{tikzpicture}}
+
+\newcommand{\recicondictionary}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.05cm, line width=1.2pt, color=medigreen] (0,0) rectangle (1.5,1.6);
+\draw[line width=1pt, color=medigreen] (0.28,0.08) -- (0.28,1.52);
+\fill[medigreen!12] (0.35,1.18) rectangle (1.28,1.4);
+\draw[line width=0.8pt, color=medigreen!70!black] (0.42,0.92) -- (1.24,0.92);
+\draw[line width=0.8pt, color=medigreen!70!black] (0.42,0.68) -- (1.24,0.68);
+\draw[line width=0.8pt, color=medigreen!70!black] (0.42,0.44) -- (0.98,0.44);
+\end{tikzpicture}}
+
+\newcommand{\reciconrobust}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.05cm, line width=1.1pt, color=medigreen] (0,0) rectangle (0.78,1.45);
+\draw[rounded corners=0.05cm, line width=1.1pt, color=careblue] (0.92,0) rectangle (1.7,1.45);
+\fill[medigreen!14] (0,0.98) rectangle (0.78,1.45);
+\fill[careblue!12] (0.92,0.98) rectangle (1.7,1.45);
+\draw[line width=0.9pt, color=medigreen!70!black] (0.18,0.58) -- (0.34,0.4) -- (0.58,0.72);
+\node[color=careblue!75!black] at (1.31,0.56) {\Large ?};
+\end{tikzpicture}}
+
+\newcommand{\reciconpipeline}{%
+\begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+\draw[rounded corners=0.06cm, line width=1.1pt, color=medigreen] (0,0.25) rectangle (0.45,1.05);
+\draw[rounded corners=0.06cm, line width=1.1pt, color=careblue] (1.15,0.25) rectangle (1.6,1.05);
+\draw[-{Latex[length=2.2mm]}, line width=1.1pt, color=midgray] (0.47,0.65) -- (1.13,0.65);
+\draw[line width=1pt, color=medigreen!70!black] (0.12,0.86) -- (0.33,0.86);
+\draw[line width=1pt, color=medigreen!70!black] (0.12,0.65) -- (0.33,0.65);
+\draw[line width=1pt, color=medigreen!70!black] (0.12,0.44) -- (0.33,0.44);
+\draw[line width=1pt, color=careblue!70!black] (1.27,0.86) -- (1.48,0.86);
+\draw[line width=1pt, color=careblue!70!black] (1.27,0.65) -- (1.48,0.65);
+\draw[line width=1pt, color=careblue!70!black] (1.27,0.44) -- (1.48,0.44);
+\end{tikzpicture}}
+
+\title{MediFlow}
+\subtitle{Synthetic comparison of CareFlow North and MediTrack East}
+\author{Data quality, KPI logic, and repeatable reporting}
+\date{Analysis run: \MediFlowAnalysisRunLabel}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Data basis}
+\renewcommand{\arraystretch}{1.22}
+\arrayrulecolor{midgray}
+\begin{tabularx}{\textwidth}{|L|Y|Y|}
+\hline
+\rowcolor{headerblue}
+ & \textbf{\color{careblue}CareFlow North} & \textbf{\color{medigreen}MediTrack East} \\
+\hline
+Raw rows & \MediFlowCareFlowRawRows & \MediFlowMediTrackRawRows \\
+\hline
+\rowcolor{lightgray}
+Rows in the 2022 window & \MediFlowCareFlowRegisteredCases & \MediFlowMediTrackRegisteredCases \\
+\hline
+Date style & One stable \texttt{YYYYMMDD} format & Mixed slash and dash timestamps \\
+\hline
+\rowcolor{lightgray}
+Month coverage & \MediFlowCareFlowMonthCoverage & \MediFlowMediTrackMonthCoverage \\
+\hline
+Main read & Cleaner KPI source & Richer category source \\
+\hline
+\end{tabularx}
+
+\vspace{0.35em}
+{\small\color{midgray}Synthetic data, real workflow pattern: one easier source and one messier source.}
+\end{frame}
+
+\begin{frame}{Field mapping: what can compare?}
+\renewcommand{\arraystretch}{1.18}
+\arrayrulecolor{midgray}
+\begin{tabularx}{\textwidth}{|L|L|L|}
+\hline
+\rowcolor{headerblue}
+\textbf{Shared idea} & \textbf{\color{careblue}CareFlow} & \textbf{\color{medigreen}MediTrack} \\
+\hline
+Case reference & \texttt{CARE\_REF} & \texttt{RefNo} \\
+\hline
+\rowcolor{lightgray}
+Registration date & \texttt{DT\_REG} & \texttt{RegisteredAt} \\
+\hline
+Assignment date & \texttt{DT\_ALLOC} & \texttt{AssignedOn} \\
+\hline
+\rowcolor{lightgray}
+Cancelled date & \texttt{DT\_ABORT} & \texttt{CancelledOn} \\
+\hline
+Pathway start & \texttt{DT\_OPEN} & \texttt{StartPathway} \\
+\hline
+\rowcolor{lightgray}
+Finished date idea & \texttt{max(DT\_END, DT\_CLOSE)} & \texttt{FinishedAt} \\
+\hline
+Category field & \texttt{TRACK} & \texttt{CareGroup} \\
+\hline
+\end{tabularx}
+
+\vspace{0.35em}
+{\small\color{midgray}The report compares shared concepts at case level. It does not join rows across systems.}
+\end{frame}
+
+\begin{frame}{Date fields: one common idea, two different systems}
+\renewcommand{\arraystretch}{1.18}
+\arrayrulecolor{midgray}
+\begin{tabularx}{\textwidth}{|L|Y|Y|}
+\hline
+\rowcolor{headerblue}
+\textbf{Check} & \textbf{\color{careblue}CareFlow North} & \textbf{\color{medigreen}MediTrack East} \\
+\hline
+Registration basis & \texttt{DT\_REG} & \texttt{RegisteredAt} \\
+\hline
+\rowcolor{lightgray}
+Order check & \texttt{DT\_REG <= DT\_ALLOC} & \texttt{RegisteredAt <= AssignedOn} \\
+\hline
+Finished-date use & Safe headline KPI basis & Exploratory only \\
+\hline
+\rowcolor{lightgray}
+Finish-before-registration & \MediFlowCareFlowInversionPct & \MediFlowMediTrackInversionPct \\
+\hline
+\end{tabularx}
+
+\vspace{0.45em}
+{\small\color{midgray}This is the core reason the two systems can share one deck while still needing different warnings.}
+\end{frame}
+
+\begin{frame}{Date cleaning: CareFlow Excel formula}
+\small
+The original exploration included helping users turn raw exports into usable Excel dates before any KPI work could start.
+
+\vspace{0.7em}
+Raw pattern: {\ttfamily YYYYMMDD} with \texttt{0} used as missing.
+
+\vspace{0.8em}
+\textbf{Excel formula}
+
+\vspace{0.25em}
+\colorbox{lightgray}{\parbox{\dimexpr\textwidth-2em\relax}{\small\ttfamily
+=IF(A2=0,"",DATE(LEFT(TEXT(A2,"00000000"),4), MID(TEXT(A2,"00000000"),5,2), RIGHT(TEXT(A2,"00000000"),2)))}}
+
+\vspace{0.8em}
+{\scriptsize\color{midgray}The final report does not depend on Excel. The formula stays here because it explains the original exploration and the rule later encoded in Python.}
+\end{frame}
+
+\begin{frame}{Date cleaning: MediTrack Excel formula}
+\small
+The messy system needed a branch in the parsing logic because the same field mixes slash and dash timestamps.
+
+\vspace{0.3em}
+{\scriptsize\color{midgray}Current mix in \texttt{RegisteredAt}: \MediFlowMediTrackSlashPct\ slash / \MediFlowMediTrackDashPct\ dash}
+
+\vspace{0.55em}
+\textbf{Excel formula}
+
+\vspace{0.15em}
+\colorbox{lightgray}{\parbox{\dimexpr\textwidth-2em\relax}{\scriptsize\ttfamily
+=IF(A2="","",IF(ISNUMBER(SEARCH("/",A2)),\\
+\hspace*{1.5em}DATE(MID(A2,FIND("/",A2,FIND("/",A2)+1)+1,4),\\
+\hspace*{3.0em}LEFT(A2,FIND("/",A2)-1),\\
+\hspace*{3.0em}MID(A2,FIND("/",A2)+1,FIND("/",A2,FIND("/",A2)+1)-FIND("/",A2)-1)),\\
+\hspace*{1.5em}DATE(RIGHT(LEFT(A2,10),4),MID(A2,4,2),LEFT(A2,2))))}}
+
+\vspace{0.6em}
+{\scriptsize\color{midgray}This logic is now mirrored in the Python parser, so the pipeline stays the source of truth.}
+\end{frame}
+
+\begin{frame}{Date fields: side-by-side data quality}
+\vspace{0.45em}
+\scriptsize
+\renewcommand{\arraystretch}{1.18}
+\arrayrulecolor{midgray}
+\begin{tabularx}{\textwidth}{|L|Y|Y|}
+\hline
+\rowcolor{headerblue}
+\textbf{Check} & \textbf{\color{careblue}CareFlow North} & \textbf{\color{medigreen}MediTrack East} \\
+\hline
+Date format & OK: single \texttt{YYYYMMDD} format & Caution: mixed slash / dash timestamps \\
+\hline
+\rowcolor{lightgray}
+Parse rate & OK: 100.0\% & OK: 100.0\% \\
+\hline
+Reg $\leq$ assign & OK: \MediFlowCareFlowLogicalOrderPct & Caution: \MediFlowMediTrackLogicalOrderPct \\
+\hline
+\rowcolor{lightgray}
+Finish before reg & OK: \MediFlowCareFlowInversionPct & Fail: \MediFlowMediTrackInversionPct \\
+\hline
+Temporal coverage & Caution: \MediFlowCareFlowMonthCoverage & OK: \MediFlowMediTrackMonthCoverage \\
+\hline
+\rowcolor{lightgray}
+Duplicates & OK: none at case level & Fail: \MediFlowMediTrackExactDuplicateRows\ exact rows + \MediFlowMediTrackCaseRowsRemoved\ extra case rows \\
+\hline
+\end{tabularx}
+\vfill
+\par\scriptsize\color{midgray}The full scorecard figure still exists in the appendix and report, but the deck now keeps this view readable.
+\end{frame}
+
+\begin{frame}[shrink=12]{KPI overview (2022)}
+\vspace{0.65em}
+\begin{columns}[c]
+  \begin{column}{0.48\textwidth}
+    \centering
+    {\fontsize{26}{30}\selectfont\color{careblue}\textbf{\MediFlowCareFlowRegisteredCases}}\\[0.18em]
+    {\small\color{midgray}registered cases --- CareFlow}\\
+    {\scriptsize\color{midgray}\MediFlowCareFlowMonthCoverage}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \centering
+    {\fontsize{26}{30}\selectfont\color{medigreen}\textbf{\MediFlowMediTrackRegisteredCases}}\\[0.18em]
+    {\small\color{midgray}registered cases --- MediTrack}\\
+    {\scriptsize\color{midgray}\MediFlowMediTrackMonthCoverage}
+  \end{column}
+\end{columns}
+
+\vspace{0.7em}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|L|Y|Y|}
+\hline
+\rowcolor{headerblue}
+\textbf{KPI} & \textbf{\color{careblue}CareFlow} & \textbf{\color{medigreen}MediTrack} \\
+\hline
+Finished case rate & \MediFlowCareFlowFinishedPct & \MediFlowMediTrackFinishedPct \\
+\hline
+\rowcolor{lightgray}
+Open rate & \MediFlowCareFlowOpenPct & \MediFlowMediTrackOpenPct \\
+\hline
+Cancelled rate & \MediFlowCareFlowCancelledPct & \MediFlowMediTrackCancelledPct \\
+\hline
+\rowcolor{lightgray}
+Median treatment time & \MediFlowCareFlowMedianDays & \MediFlowMediTrackMedianDays \\
+\hline
+\end{tabularx}
+
+\vfill
+{\scriptsize\color{midgray}MediTrack treatment time stays exploratory because \MediFlowMediTrackInversionPct\ of finished cases still fall before registration.}
+\end{frame}
+
+\begin{frame}{CareFlow: status by month}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{monthly_status_careflow.png}
+\end{frame}
+
+\begin{frame}{MediTrack: status by month}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{monthly_status_meditrack.png}
+\end{frame}
+
+\begin{frame}{Treatment time: finished cases}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{treatment_duration_boxplot.png}
+\end{frame}
+
+\begin{frame}{Automation pattern: MediTrack --- volume and variation}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{automation_matrix_meditrack.png}
+\end{frame}
+
+\begin{frame}{Recommendations: fix now}
+\vspace{0.4em}
+\begin{columns}[c]
+  \begin{column}{0.32\textwidth}
+    \centering
+    \reciconcalendar\\[0.55em]
+    \textbf{Standardise date exports}
+
+    \small Use one clear date style in the messy system.
+  \end{column}
+  \begin{column}{0.32\textwidth}
+    \centering
+    \reciconwindow\\[0.55em]
+    \textbf{Define complete reporting windows}
+
+    \small Make month coverage explicit so the year view is not ambiguous.
+  \end{column}
+  \begin{column}{0.32\textwidth}
+    \centering
+    \reciconcasegrain\\[0.55em]
+    \textbf{Keep case grain explicit}
+
+    \small Make deduplication rules part of the handover, not hidden cleanup.
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Recommendations: build next}
+\vspace{0.4em}
+\begin{columns}[c]
+  \begin{column}{0.32\textwidth}
+    \centering
+    \recicondictionary\\[0.55em]
+    \textbf{Publish field definitions}
+
+    \small A short data dictionary would remove a lot of uncertainty.
+  \end{column}
+  \begin{column}{0.32\textwidth}
+    \centering
+    \reciconrobust\\[0.55em]
+    \textbf{Separate robust and exploratory KPIs}
+
+    \small Keep the strong numbers visible without overstating the weaker ones.
+  \end{column}
+  \begin{column}{0.32\textwidth}
+    \centering
+    \reciconpipeline\\[0.55em]
+    \textbf{Automate the intake checks}
+
+    \small Parsing, deduplication, coverage checks, and report refresh belong in one workflow.
+  \end{column}
+\end{columns}
+\end{frame}
+
+\appendix
+
+\begin{frame}{Appendix: date-field completeness}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{missing_date_fields.png}
+\end{frame}
+
+\begin{frame}{Appendix: date-field spans and outliers}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{date_span_outliers.png}
+\end{frame}
+
+\begin{frame}{Appendix: KPI comparison}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{kpi_comparison.png}
+\end{frame}
+
+\begin{frame}{Appendix: monthly registration volume}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{monthly_volume_2022.png}
+\end{frame}
+
+\begin{frame}{Appendix: synthetic postcode geography}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{geo_top15_postalcodes.png}
+\end{frame}
+
+\begin{frame}{Appendix: CareFlow category pattern}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{automation_matrix_careflow.png}
+\end{frame}
+
+\begin{frame}{Appendix: combined category pattern}
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{automation_matrix_combined.png}
+\end{frame}
+
+\end{document}

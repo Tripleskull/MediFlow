@@ -1,19 +1,24 @@
 [project]
 name = "mediflow"
 version = "0.1.0"
-description = "Data quality & KPI harmonisation pipeline for multi-system healthcare data"
+description = "Data quality and KPI harmonisation pipeline for multi-system healthcare data"
 requires-python = ">=3.10"
 license = "MIT"
 dependencies = [
-    "pandas>=2.0",
-    "numpy>=1.24",
+    "matplotlib>=3.10",
+    "numpy>=2.2",
+    "pandas>=2.3",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.0",
+    "pytest>=9.0",
 ]
 
+[project.scripts]
+mediflow = "src.cli:main"
+
 [tool.pytest.ini_options]
+addopts = "-p no:cacheprovider"
 testpaths = ["tests"]
 pythonpath = ["."]

@@ -1,40 +1,100 @@
 # MediFlow
 
-**Data Quality & KPI Harmonisation for Multi-System Healthcare Data**
+**A plain-language analysis project for comparing two synthetic healthcare case systems**
 
-MediFlow is a portfolio project demonstrating how to transform inconsistent, multi-source healthcare data into reliable, comparable KPIs through a reproducible Python pipeline.
+MediFlow is a portfolio project about checking data quality, cleaning messy operational extracts, and building a repeatable KPI report from that work. The data is synthetic. The workflow is based on real analytical problems: mixed date formats, duplicate case IDs, uneven month coverage, and fields that look comparable but need careful handling.
 
-## Problem
+## Start Here
 
-Healthcare organisations often collect patient data across multiple systems with different formats, quality levels, and conventions. Comparing KPIs across these systems requires careful cleaning, mapping, and validation before any meaningful analysis is possible.
+If you are opening the repo on GitHub, these are the best entry points:
 
-## Approach
+1. [`report/mediflow_report.tex`](report/mediflow_report.tex) for the full written story
+2. [`report/mediflow_slides.tex`](report/mediflow_slides.tex) for the presentation deck
+3. [`docs/methodology.md`](docs/methodology.md) for the analytical foundation
+4. [`src/analyse.py`](src/analyse.py) for the source-of-truth pipeline
+5. [`output/mediflow_overleaf`](output/mediflow_overleaf) for the current Overleaf-ready export
 
-MediFlow ingests synthetic data from two fictional hospital systems:
+## What The Project Does
 
-- **System A** — well-structured, consistent formats, high completeness
-- **System B** — realistic quality issues: mixed date formats, missing values, duplicates, logical errors
+The project compares two synthetic systems:
 
-The pipeline cleans, standardises, and validates both datasets, then computes comparable KPIs (completion rates, wait times, treatment durations, cancellation rates) and produces a standalone data quality report.
+- `CareFlow North`: cleaner, easier to parse, but missing December registrations
+- `MediTrack East`: richer category detail, but mixed date formats, duplicates, and weaker treatment-time logic
 
-## Project structure
+The pipeline answers four practical questions:
 
+- What can be compared safely across the two systems?
+- Which KPI values are robust enough to headline?
+- Which values should stay exploratory?
+- How do we turn the same checks into a repeatable report and slide deck?
+
+## Public Repo Layout
+
+```text
+src/      Source-of-truth analysis and reporting code
+report/   Curated LaTeX files for the report and slides
+docs/     Method notes and project-facing documentation
+data/     Synthetic datasets and field notes
+tests/    Regression checks for parsing, deduplication, and KPI logic
+output/   Generated figures, report context, and Overleaf export
 ```
-src/              Pipeline modules (ingestion, cleaning, validation, KPI logic)
-data/             Synthetic input datasets
-outputs/          Generated reports and dashboards
-tests/            Unit tests
-docs/             Project documentation
-```
 
-## Quick start
+The repo is meant to read from top to bottom in that order: story, method, code, generated outputs.
+
+## Public Vs Local-Only Material
+
+The public project is the folders above.
+
+Local-only inspiration files, working notes, and older case material live under `private/` in my local workspace. That folder is ignored by Git and is not part of the public repo story. The goal is to keep the GitHub version easy to scan while still keeping local working material available during development.
+
+## Running The Analysis
+
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
 ```
 
-## Status
+- Windows PowerShell: `.\.venv\Scripts\Activate.ps1`
+- macOS / Linux: `source .venv/bin/activate`
 
-Early development — synthetic data generation and pipeline scaffolding in progress.
+Install dependencies and run:
+
+```bash
+python -m pip install -r requirements.txt
+python -m src.cli analyse --no-compile
+python -m pytest -q
+```
+
+## Report And Slide Workflow
+
+The report and slides are deliberately split into two parts:
+
+- editable structure in [`report/mediflow_report.tex`](report/mediflow_report.tex) and [`report/mediflow_slides.tex`](report/mediflow_slides.tex)
+- generated facts in [`output/report_context.json`](output/report_context.json) and [`output/generated`](output/generated)
+
+Useful commands:
+
+- Refresh figures and generated LaTeX snippets: `python -m src.cli analyse --no-compile`
+- Try local PDF compile if a TeX engine is installed: `python -m src.cli compile-docs`
+- Build the self-contained Overleaf export: `python -m src.cli export-overleaf`
+
+## Overleaf
+
+Upload the contents of [`output/mediflow_overleaf`](output/mediflow_overleaf) to Overleaf, or upload [`output/mediflow_overleaf.zip`](output/mediflow_overleaf.zip).
+
+That export contains:
+
+- `main.tex`
+- `slides.tex`
+- `generated/`
+- `figures/`
+- `report_context.json`
+
+So Overleaf does not need the full local repo layout.
+
+## Notes
+
+- The postcode map uses real Danish postcode geometry, but the postcode assignments are synthetic and were chosen for readable visuals only.
+- The pipeline keeps robust results and exploratory results separate on purpose.
+- The report and slide deck are curated by hand, but the numbers and tables come from the same analysis run.

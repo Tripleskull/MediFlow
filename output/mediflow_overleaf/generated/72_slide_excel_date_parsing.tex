@@ -1,0 +1,24 @@
+% AUTO-GENERATED: slide Excel date parsing frame
+% Refresh with python -m src.cli analyse --no-compile.
+\begin{frame}{Excel date parsing example}
+\small
+A practical part of the original exploration was helping users turn exported date strings into usable Excel dates before any KPI work could start.
+
+\vspace{0.4em}
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\textbf{Clean export}
+{\ttfamily\scriptsize =IF(A2=0,"",DATE(LEFT(TEXT(A2,"00000000"),4),\\
+ MID(TEXT(A2,"00000000"),5,2),\\
+ RIGHT(TEXT(A2,"00000000"),2)))}
+\column{0.48\textwidth}
+\textbf{Mixed export}
+{\ttfamily\scriptsize =IF(A2="","",IF(ISNUMBER(SEARCH("/",A2)),\\
+ DATE(MID(A2,FIND("/",A2,FIND("/",A2)+1)+1,4),\\
+ LEFT(A2,FIND("/",A2)-1),\\
+ MID(A2,FIND("/",A2)+1,FIND("/",A2,FIND("/",A2)+1)-FIND("/",A2)-1)),\\
+ DATE(RIGHT(LEFT(A2,10),4),MID(A2,4,2),LEFT(A2,2))))}
+\end{columns}
+
+{\scriptsize The Python pipeline now uses the same logic. The Excel formulas stay here as documentation of the exploration, not as the source of truth.}
+\end{frame}
