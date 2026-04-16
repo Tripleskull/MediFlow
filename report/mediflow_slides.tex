@@ -27,6 +27,7 @@
 \definecolor{headerblue}{RGB}{213,232,240}
 \definecolor{midgray}{RGB}{107,114,128}
 \definecolor{lightgray}{RGB}{245,245,245}
+\colorlet{tablerule}{navy!55!black}
 
 \setbeamercolor{frametitle}{bg=navy, fg=white}
 \setbeamercolor{progress bar}{fg=careblue}
@@ -37,6 +38,11 @@
 
 \graphicspath{{../output/figures/}}
 \input{../output/generated/00_document_macros.tex}
+
+\setlength{\arrayrulewidth}{1.2pt}
+\setlength{\heavyrulewidth}{1.35pt}
+\setlength{\lightrulewidth}{1.0pt}
+\setlength{\cmidrulewidth}{1.0pt}
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -115,7 +121,7 @@
 
 \begin{frame}{Data basis}
 \renewcommand{\arraystretch}{1.22}
-\arrayrulecolor{midgray}
+\arrayrulecolor{tablerule}
 \begin{tabularx}{\textwidth}{|L|Y|Y|}
 \hline
 \rowcolor{headerblue}
@@ -141,7 +147,7 @@ Main read & Cleaner KPI source & Richer category source \\
 
 \begin{frame}{Field mapping: what can compare?}
 \renewcommand{\arraystretch}{1.18}
-\arrayrulecolor{midgray}
+\arrayrulecolor{tablerule}
 \begin{tabularx}{\textwidth}{|L|L|L|}
 \hline
 \rowcolor{headerblue}
@@ -172,7 +178,7 @@ Category field & \texttt{TRACK} & \texttt{CareGroup} \\
 
 \begin{frame}{Date fields: one common idea, two different systems}
 \renewcommand{\arraystretch}{1.18}
-\arrayrulecolor{midgray}
+\arrayrulecolor{tablerule}
 \begin{tabularx}{\textwidth}{|L|Y|Y|}
 \hline
 \rowcolor{headerblue}
@@ -238,7 +244,7 @@ The messy system needed a branch in the parsing logic because the same field mix
 \vspace{0.45em}
 \scriptsize
 \renewcommand{\arraystretch}{1.18}
-\arrayrulecolor{midgray}
+\arrayrulecolor{tablerule}
 \begin{tabularx}{\textwidth}{|L|Y|Y|}
 \hline
 \rowcolor{headerblue}
@@ -264,7 +270,7 @@ Duplicates & OK: none at case level & Fail: \MediFlowMediTrackExactDuplicateRows
 \par\scriptsize\color{midgray}The full scorecard figure still exists in the appendix and report, but the deck now keeps this view readable.
 \end{frame}
 
-\begin{frame}[shrink=12]{KPI overview (2022)}
+\begin{frame}{KPI overview (2022)}
 \vspace{0.65em}
 \begin{columns}[c]
   \begin{column}{0.48\textwidth}
@@ -283,6 +289,7 @@ Duplicates & OK: none at case level & Fail: \MediFlowMediTrackExactDuplicateRows
 
 \vspace{0.7em}
 \renewcommand{\arraystretch}{1.2}
+\arrayrulecolor{tablerule}
 \begin{tabularx}{\textwidth}{|L|Y|Y|}
 \hline
 \rowcolor{headerblue}
