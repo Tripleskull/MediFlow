@@ -14,6 +14,7 @@ import pandas as pd
 
 from .analyse import OUTPUT_DIR, POSTCODE_REFERENCE_PATH, build_foundation_markdown, log
 from .formats import format_days, format_int, format_pct
+from .labels import display_group_label
 
 if TYPE_CHECKING:
     from .analyse import AnalysisResults
@@ -123,15 +124,6 @@ def latex_escape(value: object) -> str:
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
-    return text
-
-
-def display_group_label(label: object) -> str:
-    text = str(label)
-    if text.lower().startswith("forl") and text.endswith(" X"):
-        return "Forlob X"
-    if text.lower().startswith("forl") and text.endswith(" Y"):
-        return "Forlob Y"
     return text
 
 

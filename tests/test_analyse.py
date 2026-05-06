@@ -9,9 +9,9 @@ from src.analyse import (
     build_analysis_results,
     build_automation_profile,
     build_foundation_markdown,
-    care_group_display_label,
     collapse_meditrack_status_for_comparison,
 )
+from src.labels import display_group_label
 from src.reporting import (
     MASTER_REPORT_PATH,
     MASTER_SLIDES_PATH,
@@ -173,7 +173,7 @@ def test_automation_profiles_use_relative_finished_case_share(analysis_results):
         "CareGroup",
         "RefNo",
         "Done",
-        label_transform=care_group_display_label,
+        label_transform=display_group_label,
     )
 
     assert careflow_profile["share_pct"].sum() == pytest.approx(100.0)

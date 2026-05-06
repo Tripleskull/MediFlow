@@ -32,6 +32,7 @@ import numpy as np
 import pandas as pd
 
 from .formats import format_days, format_pct, normalise_text_series, safe_pct
+from .labels import display_group_label
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -794,22 +795,6 @@ def build_postcode_geo_frame(series: pd.Series, label: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def care_group_display_label(label: str) -> str:
-    cleaned = {
-        "Forl\u00f8b X": "Forlob X",
-        "Forl\u00f8b Y": "Forlob Y",
-        "ForlÃ¸b X": "Forlob X",
-        "ForlÃ¸b Y": "Forlob Y",
-    }.get(label)
-    if cleaned:
-        return cleaned
-    if label.lower().startswith("forl") and label.endswith(" X"):
-        return "Forlob X"
-    if label.lower().startswith("forl") and label.endswith(" Y"):
-        return "Forlob Y"
-    return label
-
-
 def draw_postcode_polygons(
     ax: plt.Axes,
     postcodes: set[str],
@@ -1228,7 +1213,7 @@ def generate_figures(results: AnalysisResults) -> None:
         "CareGroup",
         "RefNo",
         "Done",
-        label_transform=care_group_display_label,
+        label_transform=display_group_label,
     )
     fig_monthly_volume(results.careflow, results.meditrack)
     fig_monthly_status(
