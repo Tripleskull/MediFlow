@@ -2,19 +2,17 @@
 
 **An automated analysis pipeline for comparing two synthetic healthcare case systems**
 
-MediFlow is a portfolio project built from the structure of a real analysis case. It uses synthetic data sources modeled on the original systems and turns the workflow into a repeatable pipeline: ingesting and cleaning messy operational extracts, comparing KPI quality across systems, and generating a report and slide deck from the same run.
-
-The data in this repository is synthetic, but the analytical problems are realistic: mixed date formats, duplicate case IDs, uneven month coverage, and fields that look comparable but need careful handling.
+The data in this repository is synthetic; the analytical problems are real — mixed date formats, duplicate case IDs, uneven month coverage, and fields that look comparable but need careful handling. MediFlow is a portfolio project built from the structure of a real analysis case. It ingests and cleans messy operational extracts, compares KPI quality across systems, and generates a report and slide deck from the same run.
 
 ## Start Here
 
-If you are opening the repo on GitHub, these are the best entry points:
+If you are opening the repo on GitHub, follow this order:
 
-1. [`report/mediflow_report.tex`](report/mediflow_report.tex) for the full written story
-2. [`report/mediflow_slides.tex`](report/mediflow_slides.tex) for the presentation deck
-3. [`docs/methodology.md`](docs/methodology.md) for the analytical foundation
-4. [`src/analyse.py`](src/analyse.py) for the source-of-truth pipeline
-5. [`output/mediflow_overleaf`](output/mediflow_overleaf) for the current Overleaf-ready export
+1. [`docs/methodology.md`](docs/methodology.md) — the analytical foundation
+2. [`output/mediflow_report.pdf`](output/mediflow_report.pdf) — the full written story
+3. [`src/analyse.py`](src/analyse.py) — the source-of-truth pipeline that produced it
+4. [`output/mediflow_slides.pdf`](output/mediflow_slides.pdf) — the presentation deck
+5. [`output/mediflow_overleaf`](output/mediflow_overleaf) — the current Overleaf-ready export
 
 ## What The Project Does
 
