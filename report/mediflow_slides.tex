@@ -1,5 +1,11 @@
-% Editable slide deck entrypoint.
-% Refresh generated facts first with: python -m src.cli analyse --no-compile
+% Editable slide deck entrypoint for MediFlow.
+%
+% This file holds the curated structure of the deck. All numbers, tables,
+% and figures are pulled in from generated artefacts:
+%   ../output/generated/   LaTeX snippets (tables, macros, interpretation text)
+%   ../output/figures/     PNG figures referenced via \graphicspath
+%
+% Refresh those artefacts before compiling: python -m src.cli analyse --no-compile
 
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[aspectratio=169,12pt]{beamer}
