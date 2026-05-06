@@ -2,7 +2,7 @@
 
 ## Why the final analysis is code-first
 
-The final MediFlow analysis lives in [src/analyse.py](../src/analyse.py) because a script is easier to review, rerun, diff, and test than a notebook-only workflow. That matters here because the project is not only about making charts. It is also about showing that KPI definitions and data-quality claims can be reproduced from raw files.
+The final MediFlow analysis lives in [src/analyse.py](../src/analyse.py) because a script is easier to review, rerun, diff, and test than a notebook-only workflow — and the project is about reproducible KPI and data-quality claims, not just charts.
 
 ## What the exploratory work taught us
 
