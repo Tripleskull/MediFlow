@@ -31,6 +31,8 @@ from matplotlib.patches import Polygon
 import numpy as np
 import pandas as pd
 
+from .formats import format_days, format_pct, normalise_text_series, safe_pct
+
 warnings.filterwarnings("ignore", category=UserWarning)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -124,29 +126,6 @@ def cleanup_stale_figure_files() -> None:
     for path in FIG_DIR.glob("*.png"):
         if path.name not in ACTIVE_FIGURE_FILENAMES:
             path.unlink()
-
-
-def safe_pct(numerator: float, denominator: float) -> float:
-    if denominator == 0:
-        return 0.0
-    return 100.0 * float(numerator) / float(denominator)
-
-
-def format_pct(value: float, decimals: int = 1) -> str:
-    return f"{value:.{decimals}f}%"
-
-
-def format_days(value: float | int | None) -> str:
-    if value is None or pd.isna(value):
-        return "N/A"
-    return f"{int(round(float(value)))} d"
-
-
-def normalise_text_series(series: pd.Series) -> pd.Series:
-    cleaned = series.astype("string").str.strip()
-    cleaned = cleaned.mask(cleaned.eq(""))
-    cleaned = cleaned.mask(cleaned.eq("<NA>"))
-    return cleaned
 
 
 def load_careflow_raw() -> pd.DataFrame:
@@ -332,7 +311,7 @@ def compute_careflow_metrics(raw_df: pd.DataFrame, clean_df: pd.DataFrame) -> di
         "parse_rate_pct": compute_parse_rate(raw_df, clean_df, CAREFLOW_DATE_COLUMNS, clean_style="careflow"),
         "months_present": months_present,
         "temporal_coverage_text": f"{len(months_present)}/12 months",
-        "treatment_time_text": f"OK: median {format_days(clean_df.loc[duration_base, 'duration_days_raw'].median())}",
+        "treatment_time_text": f"OK: median {format_days(clean_df.loc[duration_base, 'duration_days_raw'].median(), abbreviated=True)}",
         "duplicates_text": "OK: no duplicate case rows",
     }
 
@@ -370,7 +349,7 @@ def compute_meditrack_metrics(
         "parse_rate_pct": compute_parse_rate(raw_df, parsed_df, MEDITRACK_DATE_COLUMNS, clean_style="meditrack"),
         "months_present": months_present,
         "temporal_coverage_text": f"{len(months_present)}/12 months",
-        "treatment_time_text": f"Exploratory: median {format_days(clean_df.loc[duration_base, 'duration_days_raw'].median())}",
+        "treatment_time_text": f"Exploratory: median {format_days(clean_df.loc[duration_base, 'duration_days_raw'].median(), abbreviated=True)}",
         "duplicates_text": (
             "Resolved: "
             f"{duplicate_profile['exact_duplicate_rows']} exact rows + "

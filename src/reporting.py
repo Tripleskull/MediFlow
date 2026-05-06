@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING
 import pandas as pd
 
 from .analyse import OUTPUT_DIR, POSTCODE_REFERENCE_PATH, build_foundation_markdown, log
+from .formats import format_days, format_int, format_pct
 
 if TYPE_CHECKING:
     from .analyse import AnalysisResults
@@ -123,18 +124,6 @@ def latex_escape(value: object) -> str:
     for old, new in replacements.items():
         text = text.replace(old, new)
     return text
-
-
-def format_int(value: int | float) -> str:
-    return f"{int(value):,}"
-
-
-def format_pct(value: float, decimals: int = 1) -> str:
-    return f"{value:.{decimals}f}%"
-
-
-def format_days(value: float | int) -> str:
-    return f"{int(round(float(value)))} days"
 
 
 def display_group_label(label: object) -> str:
