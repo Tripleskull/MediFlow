@@ -335,6 +335,12 @@ def fig_kpi_comparison(results: AnalysisResults) -> None:
 
 
 def normalise_postcode_series(series: pd.Series) -> pd.Series:
+    """Pull the first 4-digit postcode out of a free-text series.
+
+    The MediTrack PostalArea column sometimes carries trailing labels like
+    "2100 Copenhagen E"; this strips everything except the postcode digits
+    so the result joins cleanly against the geometry lookup.
+    """
     text = series.astype("string").str.strip()
     text = text.mask(text.eq(""))
     return text.str.extract(r"(\d{4})", expand=False)
@@ -345,6 +351,12 @@ def strip_z_from_ring(ring: list[list[float]]) -> list[tuple[float, float]]:
 
 
 def geometry_to_outer_rings(geometry: dict[str, object]) -> list[list[tuple[float, float]]]:
+    """Flatten a GeoJSON Polygon or MultiPolygon to a list of outer rings.
+
+    Inner rings (holes) are dropped — postcode polygons rarely have them,
+    and matplotlib fills work fine without them at this zoom. Z coordinates
+    are stripped so each point is a 2D (lon, lat) tuple.
+    """
     geometry_type = str(geometry["type"])
     coordinates = geometry["coordinates"]
     if geometry_type == "Polygon":
@@ -484,6 +496,14 @@ def get_denmark_bounds(geometry_lookup: dict[str, dict[str, object]]) -> tuple[f
 
 
 def fig_geo_top15(careflow: pd.DataFrame, meditrack: pd.DataFrame) -> None:
+    """Plot synthetic postcode usage on the real Danish postcode map.
+
+    Every Danish postcode polygon is drawn in light grey for context, then
+    the top 15 postcodes from each dataset are coloured by system. The
+    geography is genuine; the postcode pools are a synthetic design choice
+    chosen to make the two systems visually separable, so the figure
+    intentionally communicates "different pools" rather than real activity.
+    """
     geometry_lookup = load_postcode_geometry_lookup()
     careflow_geo = build_postcode_geo_frame(careflow["ZIP_PAT"], "CareFlow North")
     meditrack_geo = build_postcode_geo_frame(meditrack["PostalArea"], "MediTrack East")
@@ -594,6 +614,13 @@ def fig_single_automation_matrix(
     filename: str,
     label_offsets: dict[str, tuple[int, int]] | None = None,
 ) -> None:
+    """Render one dataset's category bubble chart.
+
+    X is treatment-time spread, Y is share of finished cases, and bubble
+    size encodes cancellation rate. label_offsets lets callers nudge text
+    labels per category to avoid overlap; defaults are chosen for the
+    current synthetic data and may need tuning if the data shifts.
+    """
     fig, ax = plt.subplots(figsize=(9.8, 6.5), constrained_layout=True)
     bubble_sizes = grouped["canc_rate"] * 45 + 40
     ax.scatter(
@@ -682,6 +709,13 @@ def fig_combined_automation_matrix(careflow_grouped: pd.DataFrame, meditrack_gro
 
 
 def fig_data_quality_scorecard(rows: list[dict[str, str]]) -> None:
+    """Render the side-by-side data-quality scorecard tables.
+
+    Each row's careflow_level / meditrack_level value picks the cell
+    background colour from scorecard_color so the figure shows severity
+    visually. The same rows feed the report's scorecard table, but there
+    only the text is rendered.
+    """
     careflow_rows = [(row["dimension"], fill(row["careflow_text"], width=48)) for row in rows]
     meditrack_rows = [(row["dimension"], fill(row["meditrack_text"], width=48)) for row in rows]
 

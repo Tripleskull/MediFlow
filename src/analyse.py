@@ -266,6 +266,13 @@ def compute_meditrack_metrics(
     clean_df: pd.DataFrame,
     duplicate_profile: dict[str, int],
 ) -> dict[str, object]:
+    """Compute MediTrack KPIs alongside CareFlow's, with one deliberate split.
+
+    Parse rate uses parsed_df (pre-deduplication) so the metric reflects the
+    raw date-format quality, independent of duplicate cleanup. Every other
+    metric is computed on clean_df. Treatment time is labelled exploratory
+    in the returned text because the inversion rate is high.
+    """
     done_mask = clean_df["status"] == "Done"
     cancelled_mask = clean_df["status"] == "Cancelled"
     open_like_mask = clean_df["status"].isin(["Open", "Pending", "In Progress"])
@@ -308,6 +315,14 @@ def build_scorecard_rows(
     format_profile: pd.DataFrame,
     duplicate_profile: dict[str, int],
 ) -> list[dict[str, str]]:
+    """Build scorecard rows for the data-quality figure and report table.
+
+    Each row carries paired text values (careflow_text, meditrack_text) and
+    severity levels (careflow_level, meditrack_level) chosen from
+    {"ok", "caution", "fail"}. The figure colours cells from level; the
+    report table only renders text. Thresholds for caution / fail come from
+    the metrics themselves so the scorecard reflects the current run.
+    """
     registered_profile = format_profile.loc["RegisteredAt"]
     meditrack_format_text = (
         "Caution: mixed slash/dash timestamps "

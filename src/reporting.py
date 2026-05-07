@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypedDict
 
 import pandas as pd
 
@@ -39,6 +39,57 @@ from .latex import (
 
 if TYPE_CHECKING:
     from .analyse import AnalysisResults
+
+
+class RegisteredAtFormat(TypedDict):
+    slash_pct: float
+    dash_pct: float
+
+
+class RegionShareRow(TypedDict):
+    region: str
+    share_pct: float
+
+
+class FigureSpec(TypedDict):
+    filename: str
+    title: str
+    caption: str
+
+
+class ReportContext(TypedDict, total=False):
+    """Shape of the dict produced by build_report_context.
+
+    Used by latex.render_macros_tex and the Overleaf JSON export. Keys are
+    deliberately permissive (total=False) because some downstream callers
+    extend the dict; the listed keys are the load-bearing ones.
+    """
+
+    build_timestamp: str
+    build_date: str
+    analysis_run_label: str
+    careflow_raw_rows: int
+    meditrack_raw_rows: int
+    source_truth_files: list[str]
+    foundation_points: list[str]
+    current_run_highlights: list[str]
+    careflow_metrics: dict[str, object]
+    meditrack_metrics: dict[str, object]
+    scorecard_rows: list[dict[str, str]]
+    careflow_category_rows: list[dict[str, object]]
+    meditrack_category_rows: list[dict[str, object]]
+    careflow_region_rows: list[RegionShareRow]
+    meditrack_region_rows: list[RegionShareRow]
+    registered_at_format: RegisteredAtFormat
+    meditrack_duplicate_profile: dict[str, int]
+    figure_specs: list[FigureSpec]
+    foundation_markdown: str
+    generated_dir: str
+    master_report_path: str
+    master_slides_path: str
+    auto_exec_summary: str
+    auto_quality_summary: str
+    auto_geo_summary: str
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -225,13 +276,13 @@ def build_auto_geo_summary(context: dict[str, object]) -> str:
     )
 
 
-def build_report_context(results: AnalysisResults) -> dict[str, object]:
+def build_report_context(results: AnalysisResults) -> ReportContext:
     now = datetime.now().astimezone()
     build_timestamp = now.isoformat(timespec="minutes")
     build_date = now.date().isoformat()
     analysis_run_label = now.strftime("%d %b %Y, %H:%M")
     registered_profile = results.meditrack_format_profile.loc["RegisteredAt"]
-    context: dict[str, object] = {
+    context: ReportContext = {
         "build_timestamp": build_timestamp,
         "build_date": build_date,
         "analysis_run_label": analysis_run_label,
