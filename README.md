@@ -55,7 +55,7 @@ python -m venv .venv
 Install dependencies and run:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -e ".[dev]"
 python -m src.cli analyse --no-compile
 python -m pytest -q
 ```

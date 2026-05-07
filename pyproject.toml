@@ -5,14 +5,14 @@ description = "Data quality and KPI harmonisation pipeline for multi-system heal
 requires-python = ">=3.10"
 license = "MIT"
 dependencies = [
-    "matplotlib>=3.10",
-    "numpy>=2.2",
-    "pandas>=2.3",
+    "matplotlib==3.10.8",
+    "numpy==2.2.6",
+    "pandas==2.3.3",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=9.0",
+    "pytest==9.0.3",
 ]
 
 [project.scripts]
