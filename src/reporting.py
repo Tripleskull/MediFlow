@@ -292,6 +292,8 @@ def build_report_context(results: AnalysisResults) -> ReportContext:
             "data/careflow_north.csv",
             "data/meditrack_east.csv",
             "src/analyse.py",
+            "src/figures.py",
+            "src/latex.py",
             "src/reporting.py",
             "docs/methodology.md",
             "report/mediflow_report.tex",

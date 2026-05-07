@@ -38,18 +38,25 @@ The project is a single-pass analysis pipeline over two synthetic healthcare dat
 - `meditrack_east.csv` - the "messy" source system; loaded entirely as `dtype=str` because dates mix multiple formats
 - `postal_codes_denmark.geojson` + `postcode_service_areas.csv` - real Danish postcode geometry and curated postcode pools for the geography figure
 
-**`src/analyse.py`** is the pipeline entry point for parsing, cleaning, metrics, and figures:
+**`src/analyse.py`** is the pipeline entry point for parsing, cleaning, and metrics:
 
 - `build_analysis_results()` returns an `AnalysisResults` dataclass that acts as the shared results contract
 - `parse_careflow()` / `parse_meditrack()` handle source-specific ingestion
-- figure-drawing functions consume cleaned frames and write PNGs to `output/figures/`
 - metrics are computed once and passed downstream rather than typed into prose
+- `run_analysis()` defers imports of figures and reporting to keep the metrics path lightweight
 
-**`src/reporting.py`** handles generated reporting assets:
+**`src/figures.py`** holds every `fig_*` function plus the postcode geometry helpers; `generate_figures(results)` is the orchestrator that consumes `AnalysisResults` and writes PNGs to `output/figures/`.
+
+**`src/latex.py`** is the pure LaTeX text layer — `latex_escape`, `with_generated_notice`, and the macro / table / slide-frame renderers. No I/O; every function returns a string.
+
+**`src/reporting.py`** orchestrates the report layer:
 
 - `build_report_context()` serialises current metrics to `output/report_context.json`
-- `build_generated_snippets()` creates LaTeX snippet content under `output/generated/`
+- `build_generated_snippets()` calls into `src/latex.py` and produces the snippet dict written to `output/generated/`
+- `export_overleaf_bundle()` produces the self-contained Overleaf upload
 - `compile_curated_documents()` compiles the editable `report/` entrypoints when a TeX engine is available
+
+**`src/formats.py`** and **`src/labels.py`** hold the shared formatting (`format_pct`, `format_int`, `format_days`, `safe_pct`, `normalise_text_series`) and label (`display_group_label`) helpers used across the modules above.
 
 **`src/cli.py`** is the cross-platform command entrypoint:
 
@@ -64,6 +71,8 @@ The project is a single-pass analysis pipeline over two synthetic healthcare dat
 - `mediflow_slides.tex` chooses which generated frames appear in the slide deck PDF
 
 **`tests/test_analyse.py`** contains regression tests that pin exact metric values and document-snippet behavior. When synthetic data changes, these tests should break until the new values are reviewed and intentionally updated.
+
+**`tests/test_outputs.py`** holds presence-only smoke tests for the figure and snippet pipelines plus the report-context shape. They protect against silent breakage where a renderer errors and produces no output.
 
 ## Key design decisions
 
